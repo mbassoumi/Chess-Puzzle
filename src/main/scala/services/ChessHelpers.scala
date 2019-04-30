@@ -2,10 +2,10 @@ package services
 
 object ChessHelpers {
 
-  def getMappingArray(height: Int, width: Int): (Map[Any, Any], Map[Any, Any]) = {
+  def getMappingArray(height: Int, width: Int): (Map[String, Int], Map[Int, String]) = {
 
-    var reverseMapping: Map[Any, Any] = Map()
-    var straightforwardMapping: Map[Any, Any] = Map()
+    var reverseMapping: Map[String, Int] = Map()
+    var straightforwardMapping: Map[Int, String] = Map()
     var index: Int = 0
     for (i <- 0 until height) {
       for (j <- 0 until width) {
@@ -46,9 +46,8 @@ object ChessHelpers {
 
   def getSafeBoards(length: Int,
                     pieces: (List[String], Map[String, Int]),
-                    height: Int,
-                    width: Int,
-                    mappingArray: (Map[Any, Any], Map[Any, Any]),
+                    boardDimensions: (Int, Int),
+                    mappingArray: (Map[String, Int], Map[Int, String]),
                     startIndex: Int = 0,
                     inputBoard: Map[Int, String] = Map(),
                     results: List[Map[Int, String]] = List(),
@@ -87,7 +86,7 @@ object ChessHelpers {
         }
 
         if (recursivePiecesElements.nonEmpty) {
-          boardResults = getSafeBoards(length, (recursivePiecesElements, newPiecesCount), height, width, mappingArray, newStartIndex, board, boardResults, false)
+          boardResults = getSafeBoards(length, (recursivePiecesElements, newPiecesCount), boardDimensions, mappingArray, newStartIndex, board, boardResults, false)
         } else {
           boardResults = board :: boardResults
         }
