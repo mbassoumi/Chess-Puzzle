@@ -1,5 +1,8 @@
 package services
 
+import services.ChessBoardValidation._
+import services.Helpers._
+
 object ChessHelpers {
 
   def getMappingArray(height: Int, width: Int): (Map[String, Int], Map[Int, String]) = {
@@ -65,7 +68,6 @@ object ChessHelpers {
     var newStartIndex = startIndex
     var newPiecesCount: Map[String, Int] = piecesCount + (piece -> (piecesCount(piece) - 1))
 
-    var isBoardSafe: Boolean = true
 
     var recursivePiecesElements: List[String] = List()
 
@@ -75,8 +77,9 @@ object ChessHelpers {
     }
     for (i <- startIndex until length) {
 
-      if (board(i) == "-") {
-        board = board + (i -> piece)
+      if (willBoardBeSafe(board, i, piece, boardDimensions, mappingArray)) {
+        //        board = board + (i -> piece)
+        board = updateBoard(board, i, piece, boardDimensions, mappingArray)
         if (newPiecesCount(piece) == 0) {
           recursivePiecesElements = piecesElements.filter(_ != piece)
           newStartIndex = 0
@@ -96,5 +99,27 @@ object ChessHelpers {
     }
 
     boardResults
+  }
+
+  def printSolutions(safeBoards: List[Map[Int, String]], boardDimensions: (Int, Int), length: Int): Unit = {
+    val (height, width) = boardDimensions
+    var positionValue: String = null
+
+    safeBoards.foreach(board => {
+      for (i <- 0 until length) {
+        if (i % width == 0) {
+          println("")
+        }
+        positionValue = board(i)
+        if (isNull(positionValue)) {
+          positionValue = "-"
+        }
+        print(s"  $positionValue  ")
+      }
+
+      println("")
+      println("")
+      println("---------------------------------------------------------")
+    })
   }
 }
