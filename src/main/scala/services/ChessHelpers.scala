@@ -70,19 +70,19 @@ object ChessHelpers {
   def orderChessPieces(piecesCount: Map[String, Int]): List[String] = {
     var orderedChessPieces: List[String] = List()
 
-    if (piecesCount.isDefinedAt("K")) {
+    if (piecesCount.isDefinedAt("K") && piecesCount("K") != 0) {
       orderedChessPieces = "K" :: orderedChessPieces
     }
-    if (piecesCount.isDefinedAt("N")) {
+    if (piecesCount.isDefinedAt("N") && piecesCount("N") != 0) {
       orderedChessPieces = "N" :: orderedChessPieces
     }
-    if (piecesCount.isDefinedAt("R")) {
+    if (piecesCount.isDefinedAt("R") && piecesCount("R") != 0) {
       orderedChessPieces = "R" :: orderedChessPieces
     }
-    if (piecesCount.isDefinedAt("B")) {
+    if (piecesCount.isDefinedAt("B") && piecesCount("B") != 0) {
       orderedChessPieces = "B" :: orderedChessPieces
     }
-    if (piecesCount.isDefinedAt("Q")) {
+    if (piecesCount.isDefinedAt("Q") && piecesCount("Q") != 0) {
       orderedChessPieces = "Q" :: orderedChessPieces
     }
 

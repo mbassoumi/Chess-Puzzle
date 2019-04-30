@@ -3,6 +3,8 @@ package services
 import models._
 import traits.Piece
 
+import scala.Console.GREEN
+
 object Helpers {
 
   /**
@@ -16,7 +18,8 @@ object Helpers {
     val t0 = System.nanoTime()
     val result = block
     val t1 = System.nanoTime()
-    println("Elapsed time: " + (t1 - t0) + "ns")
+    val time = t1 - t0
+    Console.println(s"${GREEN}Elapsed time: $time ns${GREEN}")
     result
   }
 
