@@ -1,83 +1,83 @@
-import models.King
+import models.Queen
 
-class KingModelTest extends BaseTestingClass {
+class QueenModelTest extends BaseTestingClass {
 
-  var king: King = _
+  var queen: Queen = _
 
   before {
-    king = new King()
+    queen = new Queen()
   }
 
-  test("3x3 board with index = 1 (0,1) - King.getAffectedPositionInBoard ") {
+  test("3x3 board with index = 1 (0,1) - Queen.getAffectedPositionInBoard ") {
     val height: Int = 3
     val width: Int = 3
     val index: Int = 1
-    val expectedResult: List[Int] = List(0, 2, 3, 4, 5)
+    val expectedResult: List[Int] = List(0, 2, 3, 4, 5, 7)
     val mappingArray: (Map[String, Int], Map[Int, String]) = initMappingArray(height, width)
     val boardDimensions: (Int, Int) = (height, width)
-    val affectedPositions: List[Int] = king.getAffectedPositionInBoard(index, mappingArray, boardDimensions)
-    val diff1 = affectedPositions.diff(expectedResult)
-    val diff2 = expectedResult.diff(affectedPositions)
+    val affectedPositions: List[Int] = queen.getAffectedPositionInBoard(index, mappingArray, boardDimensions)
+    val diff1 = expectedResult.diff(affectedPositions)
+    val diff2 = affectedPositions.diff(expectedResult)
     assert(diff1.isEmpty && diff2.isEmpty)
   }
 
-  test("3x3 board with index = 4 (1,1) - King.getAffectedPositionInBoard ") {
+  test("3x3 board with index = 4 (1,1) - Queen.getAffectedPositionInBoard ") {
     val height: Int = 3
     val width: Int = 3
     val index: Int = 4
     val expectedResult: List[Int] = List(0, 1, 2, 3, 5, 6, 7, 8)
     val mappingArray: (Map[String, Int], Map[Int, String]) = initMappingArray(height, width)
     val boardDimensions: (Int, Int) = (height, width)
-    val affectedPositions: List[Int] = king.getAffectedPositionInBoard(index, mappingArray, boardDimensions)
+    val affectedPositions: List[Int] = queen.getAffectedPositionInBoard(index, mappingArray, boardDimensions)
     val diff1 = affectedPositions.diff(expectedResult)
     val diff2 = expectedResult.diff(affectedPositions)
     assert(diff1.isEmpty && diff2.isEmpty)
   }
 
-  test("4x4 board with index = 0 (0,0) - King.getAffectedPositionInBoard ") {
+  test("4x4 board with index = 0 (0,0) - Queen.getAffectedPositionInBoard ") {
     val height: Int = 4
     val width: Int = 4
     val index: Int = 0
-    val expectedResult: List[Int] = List(1, 4, 5)
+    val expectedResult: List[Int] = List(1, 2, 3, 4, 8, 12, 5, 10, 15)
     val mappingArray: (Map[String, Int], Map[Int, String]) = initMappingArray(height, width)
     val boardDimensions: (Int, Int) = (height, width)
-    val affectedPositions: List[Int] = king.getAffectedPositionInBoard(index, mappingArray, boardDimensions)
+    val affectedPositions: List[Int] = queen.getAffectedPositionInBoard(index, mappingArray, boardDimensions)
     val diff1 = affectedPositions.diff(expectedResult)
     val diff2 = expectedResult.diff(affectedPositions)
     assert(diff1.isEmpty && diff2.isEmpty)
   }
 
-  test("king.signature is K") {
-    assert(king.signature == "K")
+  test("Queen.signature is Q") {
+    assert(queen.signature == "Q")
   }
 
-  test("king.checkPosition is true") {
+  test("Queen.checkPosition is true") {
     var board = initBoard(3, 3)
-    var result = king.checkPosition(1, board)
+    var result = queen.checkPosition(1, board)
     assert(result)
   }
 
-  test("king.checkPosition is false") {
+  test("Queen.checkPosition is false") {
     var board = initBoard(3, 3)
     board += (2 -> "Q")
-    var result = king.checkPosition(2, board)
+    var result = queen.checkPosition(2, board)
     assert(!result)
   }
 
-  test("king.validate is true") {
+  test("Queen.validate is true") {
     val height: Int = 4
     val width: Int = 4
     val index: Int = 0
     val mappingArray: (Map[String, Int], Map[Int, String]) = initMappingArray(height, width)
     val boardDimensions: (Int, Int) = (height, width)
     var board = initBoard(height, width)
-    board += (3 -> "K")
+    board += (6 -> "K")
 
-    val result = king.validate(board, index, boardDimensions, mappingArray)
+    val result = queen.validate(board, index, boardDimensions, mappingArray)
     assert(result)
   }
 
-  test("king.validate is false") {
+  test("Queen.validate is false") {
     val height: Int = 4
     val width: Int = 4
     val index: Int = 0
@@ -86,11 +86,11 @@ class KingModelTest extends BaseTestingClass {
     var board = initBoard(height, width)
     board += (4 -> "K")
 
-    val result = king.validate(board, index, boardDimensions, mappingArray)
+    val result = queen.validate(board, index, boardDimensions, mappingArray)
     assert(!result)
   }
 
-  test("king.updateBoard") {
+  test("Queen.updateBoard") {
     val height: Int = 4
     val width: Int = 4
     val index: Int = 0
@@ -98,14 +98,20 @@ class KingModelTest extends BaseTestingClass {
     val boardDimensions: (Int, Int) = (height, width)
     var board = initBoard(height, width)
 
-    val result = king.updateBoard(board, index, boardDimensions, mappingArray)
+    val result = queen.updateBoard(board, index, boardDimensions, mappingArray)
 
     var expectedResult: Map[Int, String] = board
 
-    expectedResult += (0 -> "K")
+    expectedResult += (0 -> "Q")
     expectedResult += (1 -> null)
+    expectedResult += (2 -> null)
+    expectedResult += (3 -> null)
     expectedResult += (4 -> null)
+    expectedResult += (8 -> null)
+    expectedResult += (12 -> null)
     expectedResult += (5 -> null)
+    expectedResult += (10 -> null)
+    expectedResult += (15 -> null)
 
     assert(result == expectedResult)
   }
