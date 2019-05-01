@@ -1,4 +1,4 @@
-<p align="center"><img src="https://scontent.fjrs4-1.fna.fbcdn.net/v/t31.0-8/27983503_2062718237331521_354627567952728998_o.jpg?_nc_cat=104&_nc_ht=scontent.fjrs4-1.fna&oh=41e0f38223895d6b09a45993b67478bf&oe=5D4532CF"></p>
+![Majd Bassoumi](https://scontent.fjrs4-1.fna.fbcdn.net/v/t31.0-8/27983503_2062718237331521_354627567952728998_o.jpg?_nc_cat=104&_nc_ht=scontent.fjrs4-1.fna&oh=41e0f38223895d6b09a45993b67478bf&oe=5D4532CF) 
 
 # About Majd Bassoumi
 
