@@ -1,13 +1,6 @@
-import models.Rook
 import services.ChessBoardValidation
 
 class ChessBoardValidationTest extends BaseTestingClass {
-
-  var rook: Rook = _
-
-  before {
-    rook = new Rook()
-  }
 
   test("ChessBoardValidation.willBoardBeSafe is true") {
     val height: Int = 3
